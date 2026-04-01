@@ -14,9 +14,9 @@ class RepPays {
 
     public function save($pays) {
         try {
-            $sql = "INSERT INTO pays (idPays, nom) VALUES (:idPays, :nom)";
+            $sql = "INSERT INTO pays (id, nom) VALUES (:id, :nom)";
             $stmt = $this->db->prepare($sql);
-            $stmt->bindValue(':idPays', $pays->getId(), PDO::PARAM_INT);
+            $stmt->bindValue(':id', $pays->getId(), PDO::PARAM_INT);
             $stmt->bindValue(':nom', $pays->getNom(), PDO::PARAM_STR);
             return $stmt->execute();
         } catch (PDOException $e) {
@@ -36,9 +36,9 @@ class RepPays {
 
     public function findById($id) {
         try {
-            $sql = "SELECT * FROM pays WHERE idPays = :idPays";
+            $sql = "SELECT * FROM pays WHERE id = :id";
             $stmt = $this->db->prepare($sql);
-            $stmt->bindValue(':idPays', $id, PDO::PARAM_INT);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
@@ -48,9 +48,9 @@ class RepPays {
 
     public function update($pays) {
         try {
-            $sql = "UPDATE pays SET nom = :nom WHERE idPays = :idPays";
+            $sql = "UPDATE pays SET nom = :nom WHERE id = :id";
             $stmt = $this->db->prepare($sql);
-            $stmt->bindValue(':idPays', $pays->getId(), PDO::PARAM_INT);
+            $stmt->bindValue(':id', $pays->getId(), PDO::PARAM_INT);
             $stmt->bindValue(':nom', $pays->getNom(), PDO::PARAM_STR);
             return $stmt->execute();
         } catch (PDOException $e) {
@@ -60,9 +60,9 @@ class RepPays {
 
     public function delete($pays) {
         try {
-            $sql = "DELETE FROM pays WHERE idPays = :idPays";
+            $sql = "DELETE FROM pays WHERE id = :id";
             $stmt = $this->db->prepare($sql);
-            $stmt->bindValue(':idPays', $pays->getId(), PDO::PARAM_INT);
+            $stmt->bindValue(':id', $pays->getId(), PDO::PARAM_INT);
             return $stmt->execute();
         } catch (PDOException $e) {
             throw new \Exception("Erreur lors de la suppression: " . $e->getMessage());

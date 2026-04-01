@@ -9,8 +9,8 @@ use app\models\Pays;
 <?php 
     $controller = new ControllerPays();
     $pays = new Pays();
-    $pays.setId(3);
-    $pays.setNom("Mada");
+    $pays->setId(3);
+    $pays->setNom("Mada");
     $controller->create($pays);
     echo "Pays ajouté : " . $pays->getNom();
 ?>
