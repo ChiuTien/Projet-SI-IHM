@@ -90,7 +90,6 @@
             if ($egalite && $vainqueur !== null) {
                 return -1;
             }
-
             return $vainqueur ? $this->getCandidatForRef($vainqueur) : null;
         }
     }

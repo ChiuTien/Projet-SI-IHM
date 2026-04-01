@@ -54,6 +54,7 @@
 # Recuperation des donnees sur internet:[x]
   - La liste des etats americains avec le nombre de grands electeurs.[x]
 # Devellopement du projet:
+'NB:' Importation des donnees dans la base de donnee.
 1. En vu du TD1:
     - Creation des models:[x]
       - Etat=> {idEtat, nomEtat, nbPMajeur, nbElecteur}[x]

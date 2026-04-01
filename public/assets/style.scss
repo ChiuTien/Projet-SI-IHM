@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap');
+
+$bg: #ffffff;
+$surface: #ffffff;
+$text: #0a0a0a;
+$text-muted: #333333;
+$line: #0a0a0a;
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px) 0 0 / 24px 24px,
+    linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px) 0 0 / 24px 24px,
+    $bg;
+  color: $text;
+  font-family: 'Space Grotesk', 'Helvetica Neue', sans-serif;
+  letter-spacing: 0.02em;
+}
+
+header,
+main,
+footer {
+  width: min(1000px, calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+header,
+footer {
+  border: 2px solid $line;
+  background: $surface;
+  padding: 1rem 1.25rem;
+  margin-top: 1rem;
+}
+
+header h1,
+footer p {
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: clamp(1rem, 2vw, 1.4rem);
+}
+
+main {
+  margin: 1rem auto;
+}
+
+section {
+  border: 2px solid $line;
+  background: $surface;
+  padding: 1.25rem;
+}
+
+p {
+  margin: 0;
+  color: $text-muted;
+}
+
+label {
+  color: $text;
+  font-weight: 600;
+}
+
+select,
+input,
+button {
+  appearance: none;
+  border: 2px solid $line;
+  background: $bg;
+  color: $text;
+  border-radius: 0;
+  padding: 0.55rem 0.7rem;
+  font: inherit;
+  margin-left: 0.5rem;
+}
+
+select:focus,
+input:focus,
+button:focus {
+  outline: none;
+  box-shadow: 4px 4px 0 0 $line;
+}
+
+button {
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  header,
+  main,
+  footer {
+    width: calc(100% - 1rem);
+  }
+
+  section {
+    padding: 1rem;
+  }
+
+  select,
+  input,
+  button {
+    display: block;
+    margin: 0.7rem 0 0;
+    width: 100%;
+  }
+}
