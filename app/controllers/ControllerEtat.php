@@ -30,5 +30,9 @@ class ControllerEtat {
     public function delete($data) {
         return $this->repEtat->delete($data);
     }
+
+    public function sumElecteurBycandidat($idCandidat) {
+        return $this->repEtat->sumElecteurByCandidat($idCandidat);
+    }
 }
 ?>

@@ -74,4 +74,16 @@ class RepEtat {
         }
     }
 
+    public function sumElecteurBycandidat($id_candidat) {
+        try {
+            $sql = "SELECT SUM(nb_electeur) as total_electeur FROM etat WHERE id_candidat = :id_candidat";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(':id_candidat', $id_candidat, PDO::PARAM_INT);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $result['total_electeur'] ?? 0;
+        } catch (PDOException $e) {
+            throw new \Exception("Erreur lors de la récupération: " . $e->getMessage());
+        }
+    }
 }
