@@ -41,17 +41,20 @@ a - Saisie resultat
             - tr * 3 []
 (boucle)- td []
             - fct getPays []
-            - Fct getNbelecteursByGdElec(Joe) []
-            - Fct getNbelecteursByGdElecteurs(D.Trump) []  
+            - Fct nb []
 
     
 b - Voir les résultats 
     -  Tableau somme des resultats pour chaque candidat []
-        - th []
-            - tr * 3 []
+        - th [x]
+            - tr * 2 [x]
         - td []
             - tr anarana []
             - tr fct getSommeTotalByGdElecteurs []  
+        
+        fct getSommeTotalByGdElecteurs(idCandidat) [x]
+            - sum(nb_Electeur) [x]
+            - idCandidat [x]
 
 2 - Export PDF
     
