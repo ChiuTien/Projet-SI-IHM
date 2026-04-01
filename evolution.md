@@ -58,9 +58,9 @@
       - Candidat=> {idCandidat, nomCandidat, prenomCandidat, ageCandidat}[x]
       - Ref=> {idRef, idEtat, idCandidat, nbVoix}[x]
     - Creation des repositories:
-      - RepEtat=> {CRUD}
-      - RepCandidat=> {CRUD}
-      - RepRef=> {CRUD, getCandidat, getEtat}
+      - RepEtat=> {CRUD}[x]
+      - RepCandidat=> {CRUD}[x]
+      - RepRef=> {CRUD}[x]
     - Creation des services:
       - EtatService=> {CRUD}
       - Candidtat=> {CRUD}
