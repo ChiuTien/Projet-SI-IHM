@@ -39,7 +39,9 @@
         idCandidat INT PRIMARY KEY AUTO_INCREMENT,
         nomCandidat VARCHAR(100) NOT NULL,
         prenomCandidat VARCHAR(100) NOT NULL,
-        ageCandidat INT NOT NULL
+        ageCandidat INT NOT NULL,
+        nbEtatGagner INT,
+        nbElecteurGagner INT
     );
 
     CREATE TABLE ref(
@@ -62,9 +64,9 @@
       - RepCandidat=> {CRUD}[x]
       - RepRef=> {CRUD}[x]
     - Creation des services:
-      - EtatService=> {CRUD}
-      - Candidtat=> {CRUD}
-      - Ref=> {CRUD, calculEnPourcentageDesVoix, determination du candidat vainqueur dans un etat, comparaison des voix, getCandidat, getEtat}.
+      - EtatService=> {CRUD}[x]
+      - Candidtat=> {CRUD}[x]
+      - Ref=> {CRUD, calculEnPourcentageDesVoix, determination du candidat vainqueur dans un etat, comparaison des voix, getCandidat, getEtat}.[x]
     - Gestion de l'affichage:
       - page pour entre le nombre de voix de chaque candidat pour un etat en plus d'un affichage de pourcentage pour cet etat.
       - page pour afficher les candidats avec le nombre des grands electeurs gagner ainsi que le vainqueur de l'election(Exportation des resultats en pdf possible).

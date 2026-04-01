@@ -14,12 +14,14 @@
 
         public function save($candidat) {
             try {
-                $sql = "INSERT INTO candidat (idCandidat, nomCandidat, prenomCandidat, ageCandidat) VALUES (:idCandidat, :nomCandidat, :prenomCandidat, :ageCandidat)";
+                $sql = "INSERT INTO candidat (idCandidat, nomCandidat, prenomCandidat, ageCandidat, nbEtatGagner, nbElecteurGagner) VALUES (:idCandidat, :nomCandidat, :prenomCandidat, :ageCandidat, :nbEtatGagner, :nbElecteurGagner)";
                 $stmt = $this->db->prepare($sql);
                 $stmt->bindValue(':idCandidat', $candidat->getIdCandidat(), PDO::PARAM_INT);
                 $stmt->bindValue(':nomCandidat', $candidat->getNomCandidat(), PDO::PARAM_STR);
                 $stmt->bindValue(':prenomCandidat', $candidat->getPrenomCandidat(), PDO::PARAM_STR);
                 $stmt->bindValue(':ageCandidat', $candidat->getAgeCandidat(), PDO::PARAM_INT);
+                $stmt->bindValue(':nbEtatGagner', $candidat->getNbEtatGagner(), PDO::PARAM_INT);
+                $stmt->bindValue(':nbElecteurGagner', $candidat->getNbElecteurGagner(), PDO::PARAM_INT);
                 return $stmt->execute();
             } catch (PDOException $e) {
                 error_log("Database error: " . $e->getMessage());
@@ -41,12 +43,14 @@
 
         public function update($candidat) {
             try {
-                $sql = "UPDATE candidat SET nomCandidat = :nomCandidat, prenomCandidat = :prenomCandidat, ageCandidat = :ageCandidat WHERE idCandidat = :idCandidat";
+                $sql = "UPDATE candidat SET nomCandidat = :nomCandidat, prenomCandidat = :prenomCandidat, ageCandidat = :ageCandidat, nbEtatGagner = :nbEtatGagner, nbElecteurGagner = :nbElecteurGagner WHERE idCandidat = :idCandidat";
                 $stmt = $this->db->prepare($sql);
                 $stmt->bindValue(':idCandidat', $candidat->getIdCandidat(), PDO::PARAM_INT);
                 $stmt->bindValue(':nomCandidat', $candidat->getNomCandidat(), PDO::PARAM_STR);
                 $stmt->bindValue(':prenomCandidat', $candidat->getPrenomCandidat(), PDO::PARAM_STR);
                 $stmt->bindValue(':ageCandidat', $candidat->getAgeCandidat(), PDO::PARAM_INT);
+                $stmt->bindValue(':nbEtatGagner', $candidat->getNbEtatGagner(), PDO::PARAM_INT);
+                $stmt->bindValue(':nbElecteurGagner', $candidat->getNbElecteurGagner(), PDO::PARAM_INT);
                 return $stmt->execute();
             } catch (PDOException $e) {
                 error_log("Database error: " . $e->getMessage());

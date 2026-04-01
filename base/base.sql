@@ -14,7 +14,9 @@ CREATE TABLE candidat(
         idCandidat INT PRIMARY KEY AUTO_INCREMENT,
         nomCandidat VARCHAR(100) NOT NULL,
         prenomCandidat VARCHAR(100) NOT NULL,
-        ageCandidat INT NOT NULL
+        ageCandidat INT NOT NULL,
+        nbEtatGagner INT,
+        nbElecteurGagner INT
     );
 
 CREATE TABLE ref(
