@@ -60,6 +60,11 @@ section {
   padding: 1.25rem;
 }
 
+h2 {
+  margin: 0 0 1rem;
+  text-transform: uppercase;
+}
+
 p {
   margin: 0;
   color: $text-muted;
@@ -96,6 +101,24 @@ button {
   font-weight: 700;
 }
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.8rem;
+}
+
+th,
+td {
+  border: 2px solid $line;
+  padding: 0.55rem 0.65rem;
+  text-align: left;
+}
+
+thead th {
+  background: $text;
+  color: $bg;
+}
+
 @media (max-width: 640px) {
   header,
   main,
@@ -113,5 +136,10 @@ button {
     display: block;
     margin: 0.7rem 0 0;
     width: 100%;
+  }
+
+  th,
+  td {
+    font-size: 0.9rem;
   }
 }
