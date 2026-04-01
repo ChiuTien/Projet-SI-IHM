@@ -7,11 +7,18 @@ CREATE TABLE pays (
 CREATE TABLE etat (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_pays INT, 
-    id_gd_electeurs INT,
-    vote INT
+    id_candidat INT,
+    nb_electeur INT
 );
 
-CREATE TABLE gd_electeurs (
+CREATE TABLE link (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_etat INT,
+    id_candidat INT,
+    nb_vote INT
+);
+
+CREATE TABLE candidat (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(100) NOT NULL
 );
