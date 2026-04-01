@@ -8,10 +8,11 @@ CREATE TABLE etat (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_pays INT, 
     id_candidat INT,
+    nb_population INT,
     nb_electeur INT
 );
 
-CREATE TABLE link (
+CREATE TABLE lien (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_etat INT,
     id_candidat INT,
