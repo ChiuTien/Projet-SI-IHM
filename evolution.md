@@ -53,14 +53,18 @@
   - La liste des etats americains avec le nombre de grands electeurs.[x]
 # Devellopement du projet:
 1. En vu du TD1:
-    - Creation des models:
-      - Etat=> {idEtat, nomEtat, nbGElecteur}
-      - Candidat=> {idCandidat, nomCandidat, prenomCandidat, ageCandidat}
-      - Ref=> {idRef, idEtat, nomEtat, nbElecteur, idCandidat, nomCandidat, prenomCandidat, ageCandidat, nbVoix}.
-    - Creation d'une repository general.
+    - Creation des models:[x]
+      - Etat=> {idEtat, nomEtat, nbPMajeur, nbElecteur}[x]
+      - Candidat=> {idCandidat, nomCandidat, prenomCandidat, ageCandidat}[x]
+      - Ref=> {idRef, idEtat, idCandidat, nbVoix}[x]
+    - Creation des repositories:
+      - RepEtat=> {CRUD}
+      - RepCandidat=> {CRUD}
+      - RepRef=> {CRUD, getCandidat, getEtat}
     - Creation des services:
       - EtatService=> {CRUD}
       - Candidtat=> {CRUD}
-      - Ref=> {CRUD, calculEnPourcentageDesVoix, determination du candidat vainqueur dans un etat, comparaison des voix}.
+      - Ref=> {CRUD, calculEnPourcentageDesVoix, determination du candidat vainqueur dans un etat, comparaison des voix, getCandidat, getEtat}.
     - Gestion de l'affichage:
       - page pour entre le nombre de voix de chaque candidat pour un etat en plus d'un affichage de pourcentage pour cet etat.
+      - page pour afficher les candidats avec le nombre des grands electeurs gagner ainsi que le vainqueur de l'election(Exportation des resultats en pdf possible).
