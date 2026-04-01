@@ -3,6 +3,7 @@ namespace app\repositories;
 
 use Flight;
 use PDO;
+use PDOException;
 
 class RepEtat {
     private PDO $db;
@@ -12,45 +13,65 @@ class RepEtat {
     }
 
     public function save($etat) {
-        $sql = "INSERT INTO etat (id_pays, id_candidat, nb_population, nb_electeur) VALUES (:id_pays, :id_candidat, :nb_population, :nb_electeur)";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(':id_pays', $etat->getIdPays(), PDO::PARAM_INT);
-        $stmt->bindValue(':id_candidat', $etat->getIdCandidat(), PDO::PARAM_INT);
-        $stmt->bindValue(':nb_population', $etat->getNbPopulation(), PDO::PARAM_INT);
-        $stmt->bindValue(':nb_electeur', $etat->getNbElecteur(), PDO::PARAM_INT);
-        return $stmt->execute();
+        try {
+            $sql = "INSERT INTO etat (id_pays, id_candidat, nb_population, nb_electeur) VALUES (:id_pays, :id_candidat, :nb_population, :nb_electeur)";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(':id_pays', $etat->getIdPays(), PDO::PARAM_INT);
+            $stmt->bindValue(':id_candidat', $etat->getIdCandidat(), PDO::PARAM_INT);
+            $stmt->bindValue(':nb_population', $etat->getNbPopulation(), PDO::PARAM_INT);
+            $stmt->bindValue(':nb_electeur', $etat->getNbElecteur(), PDO::PARAM_INT);
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            throw new \Exception("Erreur lors de l'insertion: " . $e->getMessage());
+        }
     }
 
     public function findAll() {
-        $sql = "SELECT * FROM etat";
-        $stmt = $this->db->query($sql);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        try {
+            $sql = "SELECT * FROM etat";
+            $stmt = $this->db->query($sql);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            throw new \Exception("Erreur lors de la récupération: " . $e->getMessage());
+        }
     }
 
     public function findById($id) {
-        $sql = "SELECT * FROM etat WHERE id = :id";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        try {
+            $sql = "SELECT * FROM etat WHERE id = :id";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            throw new \Exception("Erreur lors de la récupération: " . $e->getMessage());
+        }
     }
 
     public function update($etat) {
-        $sql = "UPDATE etat SET id_pays = :id_pays, id_candidat = :id_candidat, nb_population = :nb_population, nb_electeur = :nb_electeur WHERE id = :id";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(':id', $etat->getId(), PDO::PARAM_INT);
-        $stmt->bindValue(':id_pays', $etat->getIdPays(), PDO::PARAM_INT);
-        $stmt->bindValue(':id_candidat', $etat->getIdCandidat(), PDO::PARAM_INT);
-        $stmt->bindValue(':nb_population', $etat->getNbPopulation(), PDO::PARAM_INT);
-        $stmt->bindValue(':nb_electeur', $etat->getNbElecteur(), PDO::PARAM_INT);
-        return $stmt->execute();
+        try {
+            $sql = "UPDATE etat SET id_pays = :id_pays, id_candidat = :id_candidat, nb_population = :nb_population, nb_electeur = :nb_electeur WHERE id = :id";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(':id', $etat->getId(), PDO::PARAM_INT);
+            $stmt->bindValue(':id_pays', $etat->getIdPays(), PDO::PARAM_INT);
+            $stmt->bindValue(':id_candidat', $etat->getIdCandidat(), PDO::PARAM_INT);
+            $stmt->bindValue(':nb_population', $etat->getNbPopulation(), PDO::PARAM_INT);
+            $stmt->bindValue(':nb_electeur', $etat->getNbElecteur(), PDO::PARAM_INT);
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            throw new \Exception("Erreur lors de la mise à jour: " . $e->getMessage());
+        }
     }
 
     public function delete($etat) {
-        $sql = "DELETE FROM etat WHERE id = :id";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(':id', $etat->getId(), PDO::PARAM_INT);
-        return $stmt->execute();
+        try {
+            $sql = "DELETE FROM etat WHERE id = :id";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(':id', $etat->getId(), PDO::PARAM_INT);
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            throw new \Exception("Erreur lors de la suppression: " . $e->getMessage());
+        }
     }
 
 }
