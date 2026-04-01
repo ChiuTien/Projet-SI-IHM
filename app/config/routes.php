@@ -21,8 +21,7 @@ use app\models\Ref;
 
 // This wraps all routes in the group with the SecurityHeadersMiddleware
 $router->group('', function(Router $router) use ($app) {
-
-	$router->get('/', function() use ($app) {
+	$renderWelcome = function(array $extra = []) use ($app) {
 		$servCandidat = new ServCandidat();
 		$servEtat = new ServEtat();
 		$servRef = new ServRef();
@@ -31,12 +30,81 @@ $router->group('', function(Router $router) use ($app) {
 		$etats = $servEtat->findAll();
 		$refs = $servRef->findAll();
 
-		$app->render('welcome', [
+		$app->render('welcome', array_merge([
 			'candidats' => $candidats,
 			'etats' => $etats,
-			'refs' => $refs
-		]);
+			'refs' => $refs,
+			'formData' => [
+				'etat' => '',
+				'votes_c1' => '',
+				'votes_c2' => ''
+			],
+			'resultRow' => null,
+			'errorMessage' => null
+		], $extra));
+	};
+
+	$router->get('/', function() use ($renderWelcome) {
+		$renderWelcome();
 	});
+
+	$handleWelcomePost = function() use ($renderWelcome) {
+		$etatId = isset($_POST['etat']) ? (int) $_POST['etat'] : 0;
+		$votesC1 = isset($_POST['votes_c1']) ? (int) $_POST['votes_c1'] : 0;
+		$votesC2 = isset($_POST['votes_c2']) ? (int) $_POST['votes_c2'] : 0;
+
+		$formData = [
+			'etat' => (string) $etatId,
+			'votes_c1' => isset($_POST['votes_c1']) ? (string) $_POST['votes_c1'] : '',
+			'votes_c2' => isset($_POST['votes_c2']) ? (string) $_POST['votes_c2'] : ''
+		];
+
+		// Validation des données
+		if ($etatId <= 0 || $votesC1 < 0 || $votesC2 < 0) {
+			$renderWelcome([
+				'formData' => $formData,
+				'errorMessage' => 'Veuillez selectionner un etat et saisir des valeurs valides.'
+			]);
+			return;
+		}
+
+		// Utiliser le service pour valider l'état
+		$servEtat = new ServEtat();
+		if (!$servEtat->etatExists($etatId)) {
+			$renderWelcome([
+				'formData' => $formData,
+				'errorMessage' => 'Etat introuvable.'
+			]);
+			return;
+		}
+
+		// Récupérer l'état pour obtenir le nom
+		$etatData = $servEtat->findById($etatId);
+		$etatName = $etatData['nomEtat'] ?? '';
+
+		// Utiliser le service pour calculer les pourcentages
+		$servRef = new ServRef();
+		try {
+			$resultats = $servRef->calculerPourcentagesEtat($etatId, $votesC1, $votesC2);
+			
+			$renderWelcome([
+				'formData' => $formData,
+				'resultRow' => [
+					'etat' => $etatName,
+					'c1' => $resultats['c1'],
+					'c2' => $resultats['c2']
+				]
+			]);
+		} catch (\Exception $e) {
+			$renderWelcome([
+				'formData' => $formData,
+				'errorMessage' => 'Erreur lors du calcul: ' . $e->getMessage()
+			]);
+		}
+	};
+
+	$router->post('/', $handleWelcomePost);
+	$router->post('/index.php', $handleWelcomePost);
 
 	$showImportPage = function() use ($app) {
 		$app->render('import-txt', [

@@ -39,5 +39,10 @@
         public function getNbElecteur() {
             return $this->nbElecteur;
         }
+        
+        // Alias pour compatibilité
+        public function getNbVotants() {
+            return $this->nbElecteur;
+        }
     }
 ?>
