@@ -22,7 +22,7 @@
       - Un export CSV de l'historique.
 
 # Conception de la base de donnee
-  1. En vue du TD1:
+  1. En vue du TD1:[x]
        - Base de donnee:
 ```sql
     CREATE DATABASE Election;
@@ -48,5 +48,17 @@
         nbVoix DECIMAL(3,2)
     );
 ```
-# Recuperation des donnees sur internet:
-  - La liste des etats americains avec le nombre de grands electeurs.
+# Recuperation des donnees sur internet:[x]
+  - La liste des etats americains avec le nombre de grands electeurs.[x]
+# Devellopement du projet:
+1. BackEnd en vu du TD1:
+    - Creation des models:
+      - Etat=> {idEtat, nomEtat, nbGElecteur}
+      - Candidat=> {idCandidat, nomCandidat, prenomCandidat, ageCandidat}
+      - Ref=> {idRef, idEtat, nomEtat, nbElecteur, idCandidat, nomCandidat, prenomCandidat, ageCandidat, nbVoix}.
+    - Creation d'une repository general.
+    - Creation des services:
+      - EtatService=> {CRUD}
+      - Candidtat=> {CRUD}
+      - Ref=> {CRUD, calculEnPourcentageDesVoix, determination du candidat vainqueur dans un etat, comparaison des voix}.
+      - 
