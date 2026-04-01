@@ -30,5 +30,13 @@ class ControllerLien {
     public function delete($data) {
         return $this->repLien->delete($data);
     }
+
+    public function saveOrUpdateVoteByEtatAndCandidat($idEtat, $idCandidat, $nbVote) {
+        return $this->repLien->saveOrUpdateVoteByEtatAndCandidat($idEtat, $idCandidat, $nbVote);
+    }
+
+    public function getPourcentageParEtatEtCandidat() {
+        return $this->repLien->getPourcentageParEtatEtCandidat();
+    }
 }
 ?>

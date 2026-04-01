@@ -41,9 +41,12 @@ a - Saisie resultat
             - tr * 3 []
 (boucle)- td []
             - fct getPays []
-            - Fct nb []
+            - fct getPourcentageVoixByPays($idPays) []
 
-    
+        getPourcentageVoixByPays($idPays) [] 
+            - 
+            - 
+
 b - Voir les résultats 
     -  Tableau somme des resultats pour chaque candidat []
         - th [x]

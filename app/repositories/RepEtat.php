@@ -86,4 +86,23 @@ class RepEtat {
             throw new \Exception("Erreur lors de la récupération: " . $e->getMessage());
         }
     }
+
+    public function findAllWithPaysName() {
+        try {
+            $sql = "
+                SELECT
+                    e.id,
+                    e.id_pays,
+                    e.nb_population,
+                    p.nom AS nom_etat
+                FROM etat e
+                INNER JOIN pays p ON p.id = e.id_pays
+                ORDER BY p.nom ASC
+            ";
+            $stmt = $this->db->query($sql);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            throw new \Exception("Erreur lors de la récupération des etats: " . $e->getMessage());
+        }
+    }
 }

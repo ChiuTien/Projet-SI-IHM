@@ -34,5 +34,9 @@ class ControllerEtat {
     public function sumElecteurBycandidat($idCandidat) {
         return $this->repEtat->sumElecteurByCandidat($idCandidat);
     }
+
+    public function getAllWithPaysName() {
+        return $this->repEtat->findAllWithPaysName();
+    }
 }
 ?>

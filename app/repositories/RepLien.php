@@ -106,4 +106,63 @@ class RepLien {
         }
     }
 
+    public function saveOrUpdateVoteByEtatAndCandidat($idEtat, $idCandidat, $nbVote) {
+        try {
+            $sqlCheck = "SELECT id FROM lien WHERE id_etat = :id_etat AND id_candidat = :id_candidat LIMIT 1";
+            $stmtCheck = $this->db->prepare($sqlCheck);
+            $stmtCheck->bindValue(':id_etat', $idEtat, PDO::PARAM_INT);
+            $stmtCheck->bindValue(':id_candidat', $idCandidat, PDO::PARAM_INT);
+            $stmtCheck->execute();
+            $existing = $stmtCheck->fetch(PDO::FETCH_ASSOC);
+
+            if ($existing) {
+                $sqlUpdate = "UPDATE lien SET nb_vote = :nb_vote WHERE id = :id";
+                $stmtUpdate = $this->db->prepare($sqlUpdate);
+                $stmtUpdate->bindValue(':nb_vote', $nbVote, PDO::PARAM_INT);
+                $stmtUpdate->bindValue(':id', (int) $existing['id'], PDO::PARAM_INT);
+                return $stmtUpdate->execute();
+            }
+
+            $sqlInsert = "INSERT INTO lien (id_etat, id_candidat, nb_vote) VALUES (:id_etat, :id_candidat, :nb_vote)";
+            $stmtInsert = $this->db->prepare($sqlInsert);
+            $stmtInsert->bindValue(':id_etat', $idEtat, PDO::PARAM_INT);
+            $stmtInsert->bindValue(':id_candidat', $idCandidat, PDO::PARAM_INT);
+            $stmtInsert->bindValue(':nb_vote', $nbVote, PDO::PARAM_INT);
+            return $stmtInsert->execute();
+        } catch (PDOException $e) {
+            throw new \Exception("Erreur lors de l'enregistrement des votes: " . $e->getMessage());
+        }
+    }
+
+    public function getPourcentageParEtatEtCandidat() {
+        try {
+            $sql = "
+                SELECT
+                    e.id AS id_etat,
+                    p.nom AS nom_etat,
+                    c.id AS id_candidat,
+                    c.nom AS nom_candidat,
+                    COALESCE(v.nb_voix, 0) AS nb_voix,
+                    CASE
+                        WHEN e.nb_population = 0 THEN 0
+                        ELSE ROUND((COALESCE(v.nb_voix, 0) * 100) / e.nb_population, 2)
+                    END AS pourcentage
+                FROM etat e
+                INNER JOIN pays p ON p.id = e.id_pays
+                CROSS JOIN candidat c
+                LEFT JOIN (
+                    SELECT id_etat, id_candidat, SUM(nb_vote) AS nb_voix
+                    FROM lien
+                    GROUP BY id_etat, id_candidat
+                ) v ON v.id_etat = e.id AND v.id_candidat = c.id
+                ORDER BY p.nom ASC, c.nom ASC
+            ";
+
+            $stmt = $this->db->query($sql);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            throw new \Exception("Erreur lors du calcul des pourcentages par etat: " . $e->getMessage());
+        }
+    }
+
 }
