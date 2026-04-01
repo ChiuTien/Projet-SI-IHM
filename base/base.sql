@@ -6,6 +6,7 @@ USE Election;
 CREATE TABLE etat(
         idEtat INT PRIMARY KEY AUTO_INCREMENT,
         nomEtat VARCHAR(100) NOT NULL,
+        nbPMajeur INT NOT NULL,
         nbELecteur INT NOT NULL
     );
 

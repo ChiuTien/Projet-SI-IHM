@@ -31,6 +31,7 @@
     CREATE TABLE etat(
         idEtat INT PRIMARY KEY AUTO_INCREMENT,
         nomEtat VARCHAR(100) NOT NULL,
+        nbPMajeur INT NOT NULL,
         nbELecteur INT NOT NULL
     );
 
@@ -51,7 +52,7 @@
 # Recuperation des donnees sur internet:[x]
   - La liste des etats americains avec le nombre de grands electeurs.[x]
 # Devellopement du projet:
-1. BackEnd en vu du TD1:
+1. En vu du TD1:
     - Creation des models:
       - Etat=> {idEtat, nomEtat, nbGElecteur}
       - Candidat=> {idCandidat, nomCandidat, prenomCandidat, ageCandidat}
@@ -61,4 +62,5 @@
       - EtatService=> {CRUD}
       - Candidtat=> {CRUD}
       - Ref=> {CRUD, calculEnPourcentageDesVoix, determination du candidat vainqueur dans un etat, comparaison des voix}.
-      - 
+    - Gestion de l'affichage:
+      - page pour entre le nombre de voix de chaque candidat pour un etat en plus d'un affichage de pourcentage pour cet etat.

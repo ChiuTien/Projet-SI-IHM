@@ -1,51 +1,51 @@
-Alabama - 9
-Alaska - 3
-Arizona - 11
-Arkansas - 6
-California - 54
-Colorado - 10
-Connecticut - 7
-Delaware - 3
-District of Columbia - 3
-Florida - 30
-Georgia - 16
-Hawaii - 4
-Idaho - 4
-Illinois - 19
-Indiana - 11
-Iowa - 6
-Kansas - 6
-Kentucky - 8
-Louisiana - 8
-Maine - 4
-Maryland - 10
-Massachusetts - 11
-Michigan - 15
-Minnesota - 10
-Mississippi - 6
-Missouri - 10
-Montana - 4
-Nebraska - 5
-Nevada - 6
-New Hampshire - 4
-New Jersey - 14
-New Mexico - 5
-New York - 28
-North Carolina - 16
-North Dakota - 3
-Ohio - 17
-Oklahoma - 7
-Oregon - 8
-Pennsylvania - 19
-Rhode Island - 4
-South Carolina - 9
-South Dakota - 3
-Tennessee - 11
-Texas - 40
-Utah - 6
-Vermont - 3
-Virginia - 13
-Washington - 12
-West Virginia - 4
-Wisconsin - 10
-Wyoming - 3
+Alabama - 9 - 3740000
+Alaska - 3 - 540000
+Arizona - 11 - 5200000
+Arkansas - 6 - 2280000
+California - 54 - 25800000
+Colorado - 10 - 4300000
+Connecticut - 7 - 2600000
+Delaware - 3 - 770000
+District of Columbia - 3 - 530000
+Florida - 30 - 15500000
+Georgia - 16 - 7800000
+Hawaii - 4 - 1000000
+Idaho - 4 - 1300000
+Illinois - 19 - 9200000
+Indiana - 11 - 5000000
+Iowa - 6 - 2400000
+Kansas - 6 - 2100000
+Kentucky - 8 - 3400000
+Louisiana - 8 - 3400000
+Maine - 4 - 1100000
+Maryland - 10 - 4500000
+Massachusetts - 11 - 5300000
+Michigan - 15 - 7600000
+Minnesota - 10 - 4300000
+Mississippi - 6 - 2200000
+Missouri - 10 - 4700000
+Montana - 4 - 850000
+Nebraska - 5 - 1500000
+Nevada - 6 - 2300000
+New Hampshire - 4 - 1100000
+New Jersey - 14 - 6700000
+New Mexico - 5 - 1500000
+New York - 28 - 15500000
+North Carolina - 16 - 7900000
+North Dakota - 3 - 580000
+Ohio - 17 - 9000000
+Oklahoma - 7 - 3000000
+Oregon - 8 - 3200000
+Pennsylvania - 19 - 9900000
+Rhode Island - 4 - 850000
+South Carolina - 9 - 4000000
+South Dakota - 3 - 680000
+Tennessee - 11 - 5300000
+Texas - 40 - 20000000
+Utah - 6 - 2200000
+Vermont - 3 - 510000
+Virginia - 13 - 6500000
+Washington - 12 - 5800000
+West Virginia - 4 - 1400000
+Wisconsin - 10 - 4500000
+Wyoming - 3 - 440000
